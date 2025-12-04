@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MPL Chatbot</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            glow1: "#A855F7",
+            glow2: "#3B82F6",
+          },
+          backdropBlur: {
+            xs: "2px",
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gradient-to-b from-[#6D28D9] via-[#4C1D95] to-[#1E1B4B] text-white h-screen flex justify-center">
+
+<div class="w-full max-w-lg h-screen flex flex-col px-5 py-6">
+
+  <!-- TITLE -->
+  <h2 class="text-lg font-semibold opacity-70 tracking-wide mb-1">
+    ChatBot MPL ID
+  </h2>
+
+  <h1 class="text-3xl font-extrabold drop-shadow-xl mb-5 leading-snug">
+    Hi friend! <br>Can I help you?
+  </h1>
+
+  <!-- QUICK QUESTIONS (glass cards) -->
+  <div class="grid grid-cols-2 gap-3 mb-5">
+
+    <button onclick="quickSend('apa jadwal hari ini')"
+      class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-sm shadow-lg hover:bg-white/20 transition">
+      apa jadwal hari ini
+    </button>
+
+    <button onclick="quickSend('klasemen saat ini')"
+      class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-sm shadow-lg hover:bg-white/20 transition">
+      klasemen saat ini
+    </button>
+
+    <button onclick="quickSend('siapa saja pemain rrq')"
+      class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-sm shadow-lg hover:bg-white/20 transition col-span-2">
+      siapa saja pemain rrq
+    </button>
+
+    <button onclick="quickSend('siapa coach AE')"
+      class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-sm shadow-lg hover:bg-white/20 transition col-span-2">
+      siapa coach AE
+    </button>
+
+  </div>
+
+  <!-- CHAT BOX -->
+  <main
+    id="chat-box"
+    class="flex-1 overflow-y-auto space-y-4 pr-1 scrollbar-thin scrollbar-thumb-white/20"
+  ></main>
+
+  <!-- INPUT BAR (Glass + Glow) -->
+  <footer class="mt-4">
+    <div class="flex items-center 
+                bg-white/20 backdrop-blur-xl 
+                border border-white/30 
+                shadow-[0_0_25px_rgba(255,255,255,0.15)] 
+                rounded-full px-5 py-3">
+
+      <input
+        id="user-input"
+        class="flex-1 bg-transparent text-white placeholder-white/60 focus:outline-none"
+        placeholder="Ask anything..."
+      />
+
+      <button id="send-btn"
+        class="ml-3 bg-gradient-to-r from-glow1 to-glow2 px-4 py-2 rounded-full shadow-lg hover:shadow-[0_0_15px_#A855F7] transition">
+        ➤
+      </button>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+  function quickSend(text) {
+    document.getElementById("user-input").value = text;
+    document.getElementById("send-btn").click();
+  }
+</script>
+
+</body>
+</html>
