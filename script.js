@@ -14,11 +14,9 @@ function addMessage(text, sender) {
     sender === "user" ? "justify-end" : ""
   } animate-[fadeIn_.3s_ease-out]`;
 
-  // Glass bubble style for bot
   const bubbleStyleBot =
     "bg-white/15 backdrop-blur-md border border-white/20 text-white shadow-lg";
 
-  // Gradient glowing bubble for user
   const bubbleStyleUser =
     "bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg";
 
@@ -31,9 +29,7 @@ function addMessage(text, sender) {
 
     <div class="px-4 py-3 rounded-2xl max-w-[75%] ${
       sender === "user" ? bubbleStyleUser : bubbleStyleBot
-    }">
-      ${text}
-    </div>
+    }">${text}</div>
 
     ${
       sender === "user"
@@ -46,23 +42,19 @@ function addMessage(text, sender) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// ------------------------------
-// Typing Indicator
-// ------------------------------
 function showTyping() {
   const div = document.createElement("div");
   div.id = "typing";
   div.className = "flex items-start gap-3 animate-[fadeIn_.3s_ease-out]";
 
   div.innerHTML = `
-      <img src="assets/mpl.png" class="w-10 h-10 rounded-full shadow">
-
-      <div class="px-4 py-3 rounded-2xl bg-white/15 backdrop-blur-md 
-                  border border-white/20 text-gray-100 flex gap-2 shadow-lg">
-        <span class="animate-bounce">●</span>
-        <span class="animate-bounce delay-150">●</span>
-        <span class="animate-bounce delay-300">●</span>
-      </div>
+    <img src="assets/mpl.png" class="w-10 h-10 rounded-full shadow">
+    <div class="px-4 py-3 rounded-2xl bg-white/15 backdrop-blur-md 
+      border border-white/20 text-gray-100 flex gap-2 shadow-lg">
+      <span class="animate-bounce">●</span>
+      <span class="animate-bounce delay-150">●</span>
+      <span class="animate-bounce delay-300">●</span>
+    </div>
   `;
 
   chatBox.appendChild(div);
@@ -94,8 +86,14 @@ async function sendMessage() {
     });
 
     const data = await response.json();
-
     removeTyping();
+
+    // Jika API mengembalikan error → tampilkan di bubble
+    if (!response.ok) {
+      addMessage("⚠ " + data.error, "bot");
+      return;
+    }
+
     addMessage(data.answer, "bot");
 
   } catch (err) {
