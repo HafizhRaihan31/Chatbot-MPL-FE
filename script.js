@@ -1,4 +1,4 @@
-const API_URL = "https://chatbot-mpl-production.up.railway.app/api/chat";
+const API_URL = "https://chatbot-mpl-vrc.vercel.app/api/chat";
 
 const chatBox = document.getElementById("chat-box");
 const input = document.getElementById("user-input");
